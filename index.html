@@ -4,31 +4,26 @@
 <meta charset=utf-8 />
 <title>Compare</title>
 <link rel="stylesheet" href="leaflet/dist/leaflet.css" />
+<link rel="stylesheet" href='reset.css' />
+<link rel="stylesheet" href='style.css' />
 <script src='leaflet/dist/leaflet.js'></script>
 </head>
 <body>
-  <div id='osm'>
+  <div class='map' id='osm'>
+  </div>
+  <div class='map' id='google'>
   </div>
 </body>
 </html>
 
 <script>
-// create a CloudMade tile layer
-var cloudmadeUrl = 'http://{s}.tile.cloudmade.com/YOUR-API-KEY/997/256/{z}/{x}/{y}.png',
-    cloudmadeAttribution = 'Map data &copy; 2011 OpenStreetMap contributors, Imagery &copy; 2011 CloudMade',
-    cloudmade = new L.TileLayer(cloudmadeUrl, {maxZoom: 18, attribution: cloudmadeAttribution});
+var osmLayer = new L.TileLayer(
+      'http://a.tile.openstreetmap.org/{z}/{x}/{y}.png', 
+      {maxZoom: 18, attribution: 'Map data &copy; 2011 OpenStreetMap contributors.'});
+var osm = new L.Map('osm');
+osm.setView(new L.LatLng(44, 18), 7).addLayer(osmLayer);
 
-// initialize the map on the "map" div
-var map = new L.Map('osm');
 
-// set the map view to a given center and zoom and add the CloudMade layer
-map.setView(new L.LatLng(51.505, -0.09), 13).addLayer(cloudmade);
+// http://mt1.google.com/vt/lyrs=m@169000000&hl=en&x=3&y=7&z=4&s=
 
-// create a marker in the given location and add it to the map
-var marker = new L.Marker(new L.LatLng(51.5, -0.09));
-map.addLayer(marker);
-
-// attach a given HTML content to the marker and immediately open it
-marker.bindPopup("A pretty CSS3 popup.<br />Easily customizable.").openPopup();
 </script>
-
