@@ -6,6 +6,7 @@
 <link rel="stylesheet" href="leaflet/dist/leaflet.css" />
 <link rel="stylesheet" href='reset.css' />
 <link rel="stylesheet" href='style.css' />
+<script src='jquery.min.js'></script>
 <script src='leaflet/dist/leaflet.js'></script>
 </head>
 <body>
@@ -17,13 +18,31 @@
 </html>
 
 <script>
-var osmLayer = new L.TileLayer(
-      'http://a.tile.openstreetmap.org/{z}/{x}/{y}.png', 
-      {maxZoom: 18, attribution: 'Map data &copy; 2011 OpenStreetMap contributors.'});
-var osm = new L.Map('osm');
-osm.setView(new L.LatLng(44, 18), 7).addLayer(osmLayer);
+$(function() {
+  var osmLayer = new L.TileLayer(
+        'http://a.tile.openstreetmap.org/{z}/{x}/{y}.png', 
+        {maxZoom: 18, attribution: 'Map data &copy; 2011 OpenStreetMap contributors.'});
+  var osm = new L.Map('osm');
+  var h = document.location.hash.replace('#', '').split(',');
+  var lat = 30, lng = -96, z = 4;
+  if (h[0] && h[1] && h[3]) {
+    lat = parseFloat(h[0]);
+    lng = parseFloat(h[1]);
+    z   = parseFloat(h[2]);
+  }
+  osm.setView(new L.LatLng(lat, lng), z).addLayer(osmLayer);
 
+  var googleLayer = new L.TileLayer(
+        'http://mt1.google.com/vt/lyrs=m@169000000&hl=en&x={x}&y={y}&z={z}&s=',
+        {maxZoom: 18, attribution: 'Map data &copy; 2011 OpenStreetMap contributors.'});
+  var google = new L.Map('google');
+  google.setView(osm.getCenter(), osm.getZoom()).addLayer(googleLayer);
 
-// http://mt1.google.com/vt/lyrs=m@169000000&hl=en&x=3&y=7&z=4&s=
-
+  osm.on('move', function(e) {
+    var c = osm.getCenter();
+    var z = osm.getZoom();
+    document.location.hash = [c.lat, c.lng, z].join(',');
+    google.setView(new L.LatLng(c.lat, c.lng), z);
+  });
+});
 </script>
