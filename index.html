@@ -25,7 +25,7 @@ $(function() {
   var osm = new L.Map('osm');
   var h = document.location.hash.replace('#', '').split(',');
   var lat = 30, lng = -96, z = 4;
-  if (h[0] && h[1] && h[3]) {
+  if (h[0] && h[1] && h[2]) {
     lat = parseFloat(h[0]);
     lng = parseFloat(h[1]);
     z   = parseFloat(h[2]);
