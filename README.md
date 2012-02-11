@@ -5,8 +5,8 @@ Synchronizes the Google Maps lat, lon and zoom level to OSM's.
 
 [Check it out](http://lxbarth.github.com/compare)
 
-Nice to have:
+Nice to have / known issues:
 
-- synchronize vice versa
 - eliminate lag
+- Leaflet (OSM) sometimes does not respect GMap changes.
 
