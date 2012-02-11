@@ -42,28 +42,26 @@ $(function() {
     mapTypeId: google.maps.MapTypeId.ROADMAP
   });
 
-  var gCChange, gZChange;
+  var omapLock = 0, gmapLock = 0;
   var omapMove = function(e) {
-    google.maps.event.removeListener(gCChange);
-    google.maps.event.removeListener(gZChange);
+    if (omapLock > Date.now()) return;
+    gmapLock = Date.now() + 500;
     var c = omap.getCenter();
     var z = omap.getZoom();
     document.location.hash = [c.lat, c.lng, z].join(',');
     gmap.panTo(new google.maps.LatLng(c.lat, c.lng));
     gmap.setZoom(z);
-    gCChange = google.maps.event.addListener(gmap, 'center_changed', gmapMove);
-    gZChange = google.maps.event.addListener(gmap, 'zoom_changed', gmapMove);
   };
   var gmapMove = function() {
-    omap.off('moveend', omapMove);
+    if (gmapLock > Date.now()) return;
+    omapLock = Date.now() + 500;
     var c = gmap.getCenter();
     var z = gmap.getZoom();
     document.location.hash = [c.Pa, c.Qa, z].join(',');
     omap.setView(new L.LatLng(c.Pa, c.Qa), z);
-    omap.on('moveend', omapMove);
-  });
+  };
   omap.on('moveend', omapMove);
-  gCChange = google.maps.event.addListener(gmap, 'center_changed', gmapMove);
-  gZChange = google.maps.event.addListener(gmap, 'zoom_changed', gmapMove);
+  google.maps.event.addListener(gmap, 'center_changed', gmapMove);
+  google.maps.event.addListener(gmap, 'zoom_changed', gmapMove);
 });
 </script>
