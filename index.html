@@ -54,7 +54,7 @@ $(function() {
 
   var geolookup = function() {
     var query = $('#search input[type=text]').val();
-    var url = 'http://open.mapquestapi.com/nominatim/v1/search?format=json&json_callback=callback&countrycodes=us&limit=1&q=';
+    var url = 'http://open.mapquestapi.com/nominatim/v1/search?format=json&json_callback=callback&limit=1&q=';
     $.ajax({
         url: url + query,
         dataType: 'jsonp',
