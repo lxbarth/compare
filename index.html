@@ -69,7 +69,6 @@ $(function() {
                 v.type == 'maritime'  || v.type == 'country') {
                 z = 7;
               }
-              console.log([v.lat, v.lon, z].join(','))
               omap.setView(new L.LatLng(parseFloat(v.lat), parseFloat(v.lon)), z);
             }
         }
