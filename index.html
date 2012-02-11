@@ -8,6 +8,9 @@
 <link rel="stylesheet" href='style.css' />
 <script src='jquery.min.js'></script>
 <script src='leaflet-dist/leaflet.js'></script>
+<script type="text/javascript"
+      src="http://maps.googleapis.com/maps/api/js?key=AIzaSyD-TB_1Ytvh0CjizmBk1x0low0izcy0Cyo&sensor=false">
+    </script>
 </head>
 <body>
   <div class='map' id='osm'>
@@ -22,7 +25,7 @@ $(function() {
   var osmLayer = new L.TileLayer(
         'http://a.tile.openstreetmap.org/{z}/{x}/{y}.png', 
         {maxZoom: 18, attribution: 'Map data &copy; 2011 OpenStreetMap contributors.'});
-  var osm = new L.Map('osm');
+  var omap = new L.Map('osm');
   var h = document.location.hash.replace('#', '').split(',');
   var lat = 30, lng = -96, z = 4;
   if (h[0] && h[1] && h[2]) {
@@ -30,19 +33,20 @@ $(function() {
     lng = parseFloat(h[1]);
     z   = parseFloat(h[2]);
   }
-  osm.setView(new L.LatLng(lat, lng), z).addLayer(osmLayer);
+  omap.setView(new L.LatLng(lat, lng), z).addLayer(osmLayer);
 
-  var googleLayer = new L.TileLayer(
-        'http://mt1.google.com/vt/lyrs=m@169000000&hl=en&x={x}&y={y}&z={z}&s=',
-        {maxZoom: 18, attribution: 'Map data &copy; 2011 OpenStreetMap contributors.'});
-  var google = new L.Map('google');
-  google.setView(osm.getCenter(), osm.getZoom()).addLayer(googleLayer);
+  var gmap = new google.maps.Map(document.getElementById('google'), {
+    center: new google.maps.LatLng(-34.397, 150.644),
+    zoom: 8,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  });
 
-  osm.on('move', function(e) {
-    var c = osm.getCenter();
-    var z = osm.getZoom();
+  omap.on('move', function(e) {
+    var c = omap.getCenter();
+    var z = omap.getZoom();
     document.location.hash = [c.lat, c.lng, z].join(',');
-    google.setView(new L.LatLng(c.lat, c.lng), z);
+    gmap.setCenter(new google.maps.LatLng(c.lat, c.lng));
+    gmap.setZoom(z);
   });
 });
 </script>
