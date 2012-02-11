@@ -36,8 +36,8 @@ $(function() {
   omap.setView(new L.LatLng(lat, lng), z).addLayer(osmLayer);
 
   var gmap = new google.maps.Map(document.getElementById('google'), {
-    center: new google.maps.LatLng(-34.397, 150.644),
-    zoom: 8,
+    center: new google.maps.LatLng(lat, lng),
+    zoom: z,
     mapTypeId: google.maps.MapTypeId.ROADMAP
   });
 
