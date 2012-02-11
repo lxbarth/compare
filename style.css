@@ -75,6 +75,9 @@ body,
   right: 30px;
   width: 260px;
   }
+  #search input[name=location]:focus {
+    background: rgba(255, 255, 255, 1);
+    }
   #search .button {
     overflow:hidden;
     width: 20px;
