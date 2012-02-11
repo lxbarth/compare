@@ -74,11 +74,7 @@ body,
   top: 5px;
   right: 30px;
   width: 260px;
-  display: none;
   }
-  #search:hover input[name=location] {
-    display: inline;
-    }
   #search .button {
     overflow:hidden;
     width: 20px;
