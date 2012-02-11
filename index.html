@@ -7,6 +7,7 @@
 <link rel="stylesheet" href='reset.css' />
 <link rel="stylesheet" href='style.css' />
 <script src='jquery.min.js'></script>
+<script src='underscore.js'></script>
 <script src='leaflet-dist/leaflet.js'></script>
 <script type="text/javascript"
       src="http://maps.googleapis.com/maps/api/js?key=AIzaSyD-TB_1Ytvh0CjizmBk1x0low0izcy0Cyo&sensor=false">
@@ -41,12 +42,28 @@ $(function() {
     mapTypeId: google.maps.MapTypeId.ROADMAP
   });
 
-  omap.on('move', function(e) {
+  var gCChange, gZChange;
+  var omapMove = function(e) {
+    google.maps.event.removeListener(gCChange);
+    google.maps.event.removeListener(gZChange);
     var c = omap.getCenter();
     var z = omap.getZoom();
     document.location.hash = [c.lat, c.lng, z].join(',');
-    gmap.setCenter(new google.maps.LatLng(c.lat, c.lng));
+    gmap.panTo(new google.maps.LatLng(c.lat, c.lng));
     gmap.setZoom(z);
+    gCChange = google.maps.event.addListener(gmap, 'center_changed', gmapMove);
+    gZChange = google.maps.event.addListener(gmap, 'zoom_changed', gmapMove);
+  };
+  var gmapMove = function() {
+    omap.off('moveend', omapMove);
+    var c = gmap.getCenter();
+    var z = gmap.getZoom();
+    document.location.hash = [c.Pa, c.Qa, z].join(',');
+    omap.setView(new L.LatLng(c.Pa, c.Qa), z);
+    omap.on('moveend', omapMove);
   });
+  omap.on('moveend', omapMove);
+  gCChange = google.maps.event.addListener(gmap, 'center_changed', gmapMove);
+  gZChange = google.maps.event.addListener(gmap, 'zoom_changed', gmapMove);
 });
 </script>
