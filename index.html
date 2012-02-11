@@ -7,9 +7,10 @@
 <link rel="stylesheet" href='reset.css' />
 <link rel="stylesheet" href='style.css' />
 <script src='leaflet-dist/leaflet.js'></script>
+<script src='jquery.min.js'></script>
 <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyD-TB_1Ytvh0CjizmBk1x0low0izcy0Cyo&sensor=false"></script>
 <script>
-function initialize() {
+$(function() {
   var osmLayer = new L.TileLayer(
         'http://a.tile.openstreetmap.org/{z}/{x}/{y}.png', 
         {maxZoom: 18, attribution: 'Map data &copy; 2011 OpenStreetMap contributors.'});
@@ -50,10 +51,38 @@ function initialize() {
   omap.on('moveend', omapMove);
   google.maps.event.addListener(gmap, 'center_changed', gmapMove);
   google.maps.event.addListener(gmap, 'zoom_changed', gmapMove);
-};
+
+  var geolookup = function() {
+    var query = $('#search input[type=text]').val();
+    var url = 'http://open.mapquestapi.com/nominatim/v1/search?format=json&json_callback=callback&countrycodes=us&limit=1&q=';
+    $.ajax({
+        url: url + query,
+        dataType: 'jsonp',
+        jsonpCallback: 'callback',
+        success: function (value) {
+            var v = value[0];
+            if (value === undefined) {
+                alert('Could not find ' + query);
+            } else {
+              var z = 13;
+              if (v.type == 'state' || v.type == 'county' ||
+                v.type == 'maritime'  || v.type == 'country') {
+                z = 7;
+              }
+              console.log([v.lat, v.lon, z].join(','))
+              omap.setView(new L.LatLng(parseFloat(v.lat), parseFloat(v.lon)), z);
+            }
+        }
+    });
+  }
+  $('#search .button').click(geolookup);
+  $('#search input[type=text]').keypress(function(e) {
+    (e.which == 13) && geolookup();
+  });
+});
 </script>
 </head>
-<body onload='initialize()'>
+<body>
   <div id='search'>
     <input name='location' type='text' placeholder='enter location'>
     <a href='#' class='button i isearch'>Go</a>
