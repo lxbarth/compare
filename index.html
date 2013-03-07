@@ -6,80 +6,7 @@
 <link rel="stylesheet" href="leaflet-dist/leaflet.css" />
 <link rel="stylesheet" href='reset.css' />
 <link rel="stylesheet" href='style.css' />
-<script src='leaflet-dist/leaflet.js'></script>
-<script src='jquery.min.js'></script>
 <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyD-TB_1Ytvh0CjizmBk1x0low0izcy0Cyo&sensor=false"></script>
-<script>
-$(function() {
-  var osmLayer = new L.TileLayer(
-        'http://a.tile.openstreetmap.org/{z}/{x}/{y}.png', 
-        {maxZoom: 18, attribution: 'Map data &copy; 2011 OpenStreetMap contributors.'});
-  var omap = new L.Map('osm');
-  var h = document.location.hash.replace('#', '').split(',');
-  var lat = 30, lng = -96, z = 4;
-  if (h[0] && h[1] && h[2]) {
-    lat = parseFloat(h[0]);
-    lng = parseFloat(h[1]);
-    z   = parseFloat(h[2]);
-  }
-  omap.setView(new L.LatLng(lat, lng), z).addLayer(osmLayer);
-
-  var gmap = new google.maps.Map(document.getElementById('google'), {
-    center: new google.maps.LatLng(lat, lng),
-    zoom: z,
-    mapTypeId: google.maps.MapTypeId.ROADMAP
-  });
-
-  var omapLock = 0, gmapLock = 0;
-  var omapMove = function(e) {
-    if (omapLock > Date.now()) return;
-    gmapLock = Date.now() + 500;
-    var c = omap.getCenter();
-    var z = omap.getZoom();
-    document.location.hash = [c.lat, c.lng, z].join(',');
-    gmap.panTo(new google.maps.LatLng(c.lat, c.lng));
-    gmap.setZoom(z);
-  };
-  var gmapMove = function() {
-    if (gmapLock > Date.now()) return;
-    omapLock = Date.now() + 500;
-    var c = gmap.getCenter();
-    var z = gmap.getZoom();
-    document.location.hash = [c.Pa, c.Qa, z].join(',');
-    omap.setView(new L.LatLng(c.Pa, c.Qa), z);
-  };
-  omap.on('moveend', omapMove);
-  google.maps.event.addListener(gmap, 'center_changed', gmapMove);
-  google.maps.event.addListener(gmap, 'zoom_changed', gmapMove);
-
-  var geolookup = function() {
-    var query = $('#search input[type=text]').val();
-    var url = 'http://open.mapquestapi.com/nominatim/v1/search?format=json&json_callback=callback&limit=1&q=';
-    $.ajax({
-        url: url + query,
-        dataType: 'jsonp',
-        jsonpCallback: 'callback',
-        success: function (value) {
-            var v = value[0];
-            if (value === undefined) {
-                alert('Could not find ' + query);
-            } else {
-              var z = 13;
-              if (v.type == 'state' || v.type == 'county' ||
-                v.type == 'maritime'  || v.type == 'country') {
-                z = 7;
-              }
-              omap.setView(new L.LatLng(parseFloat(v.lat), parseFloat(v.lon)), z);
-            }
-        }
-    });
-  }
-  $('#search .button').click(geolookup);
-  $('#search input[type=text]').keypress(function(e) {
-    (e.which == 13) && geolookup();
-  });
-});
-</script>
 </head>
 <body>
   <div id='search'>
@@ -90,5 +17,9 @@ $(function() {
   </div>
   <div class='map' id='google'>
   </div>
+  <script src='leaflet-dist/leaflet.js'></script>
+  <script src='leaflet-hash.js'></script>
+  <script src='jquery.min.js'></script>
+  <script src='site.js'></script>
 </body>
 </html>
