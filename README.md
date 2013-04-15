@@ -1,12 +1,5 @@
-# Compare OpenStreetMap to Google Maps
+# Compare maps
 
-Quick and dirty comparison tool offering a split screen of two maps.
-Synchronizes the Google Maps lat, lon and zoom level to OSM's.
+Compares OpenStreetMap to Google Maps.
 
-[Check it out](http://lxbarth.github.com/compare)
-
-Nice to have / known issues:
-
-- eliminate lag
-- Leaflet (OSM) sometimes does not respect GMap changes.
-
+View: [http://lxbarth.com/compare](http://lxbarth.com/compare)

@@ -1,9 +1,27 @@
 L.Control.Attribution.prototype.options.prefix = '';
 
-var osmLayer = new L.TileLayer(
-      'http://a.tile.openstreetmap.org/{z}/{x}/{y}.png',
-      {maxZoom: 18, attribution: 'Map data &copy; 2011 OpenStreetMap contributors.'}),
-    omap = new L.Map('osm').addLayer(osmLayer),
+// Defaults.
+var compareUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+var googleMapType = 'ROADMAP';
+
+// Parse query options.
+var search = location.search.replace('?', '').replace('/', '').split('&');
+if (search.length) {
+    for (var i = 0; i < search.length; i++) {
+        var opt = search[i].split('=');
+        if (opt[0] == 'mapbox') {
+            compareUrl = 'http://{s}.tiles.mapbox.com/v3/' + opt[1] + '/{z}/{x}/{y}.png';
+        } else if (opt[0] == 'google') {
+            googleMapType = opt[1];
+        }
+    }
+}
+
+// Set up maps.
+var compareLayer = new L.TileLayer(
+      compareUrl,
+      {maxZoom: 19, subdomains: 'abc', attribution: 'Map data &copy; 2011 OpenStreetMap contributors.'}),
+    omap = new L.Map('osm').addLayer(compareLayer),
     lat = 30, lng = -96, z = 4;
 
 if (location.hash.match(/,/g)) {
@@ -16,7 +34,7 @@ omap.setView([lat, lng], z).addHash();
 var gmap = new google.maps.Map(document.getElementById('google'), {
   center: new google.maps.LatLng(omap.getCenter().lat, omap.getCenter().lng),
   zoom: z,
-  mapTypeId: google.maps.MapTypeId.ROADMAP
+  mapTypeId: google.maps.MapTypeId[googleMapType]
 });
 
 var omapLock = 0, gmapLock = 0;
