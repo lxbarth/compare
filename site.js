@@ -1,22 +1,17 @@
 (function() {
-    if (!location.search) {
+    var layerids = getLayerIds();
+    if (!layerids) {
         document.getElementById('map1').style.display = 'none';
         document.getElementById('map2').style.display = 'none';
         return;
     }
 
-    var mapids = (location.search.split('?')[1] || '')
-        .split('/')[0]
-        .split('&');
-
-    L.mapbox.accessToken = 'pk.eyJ1IjoiYW5kcmVhc3ZpZ2xha2lzIiwiYSI6IlVremRqN0kifQ.CFFJsLuWWyuhgsZTb51jWg';
-    // Instead of our usual one map, we will create two in this example to make
-    // things interesting.
-    var map1 = L.mapbox.map('map1', mapids[0])
+    var map1 = L.mapbox.map('map1', null)
         .setView([40, -74.50], 9);
-    var map2 = L.mapbox.map('map2', mapids[1]) // '?strava.lxhqto6r&strava.map-0c7vme7s'
+    var map2 = L.mapbox.map('map2', null)
         .setView([40, -74.50], 9);
-
+    addLayer(layerids[0], map1);
+    addLayer(layerids[1], map2);
     L.hash(map1);
 
     // when either map finishes moving, trigger an update on the other one.
