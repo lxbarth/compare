@@ -37,11 +37,6 @@ var addLayer = function(layerid, map) {
             layer = L.mapbox.tileLayer(layerid);
             break;
     }
-    // Remove classes Google.js adds.
-    var children = map.getContainer().children;
-    for (var i = 0; i < children.length; i++) {
-        children[i].className = children[i].className.replace(/\bleaflet-top\b/,'').replace(/\bleaflet-left\b/,'');
-    }
     return layer.addTo(map);
 };
 

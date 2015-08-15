@@ -13,6 +13,11 @@
 
     var left = addLayer(layerids[0], map);
     var right = addLayer(layerids[1], map);
+    // Remove classes Google.js adds.
+    left.getContainer().className =
+        left.getContainer().className.replace(/\bleaflet-top\b/,'').replace(/\bleaflet-left\b/,'');
+    right.getContainer().className =
+        right.getContainer().className.replace(/\bleaflet-top\b/,'').replace(/\bleaflet-left\b/,'');
 
     // Clip as you move map or range slider.
     var range = document.getElementById('range');
