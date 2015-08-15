@@ -76,7 +76,7 @@ a.button {
 
 @media (max-width: 700px) {
   #help {
-    margin: 100px 20px;
+    margin: 100px 10px 10px 10px;
   }
   #forkme {
     display: none;
