@@ -1,3 +1,3 @@
 # Compare maps
 
-Use under http://lxbarth.com/compare/
+Go: http://lxbarth.com/compare/
