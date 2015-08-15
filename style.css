@@ -7,11 +7,31 @@ body {
 #map { position:absolute; top:0; bottom:0; width:100%; background-color: #202222; }
 #map1 { position:absolute; top:0; bottom:0; left:0; right:50%; background-color: #202222; }
 #map2 { position:absolute; top:0; bottom:0; left:50%; right:0; background-color: #202222; }
-
 #range {
-  bottom: 35px;
+  top: 50%;
   width: 100%;
   position: absolute;
+}
+input[type=range] {
+  -webkit-appearance: none;
+}
+input[type=range]:focus {
+  outline: none; 
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  height: 50px;
+  width: 30px;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  margin-top: -14px;
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+}
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 0;
 }
 h2 {
   padding: 0 0 20px 0;
