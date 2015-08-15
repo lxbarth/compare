@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+<title>Compare maps</title>
+
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />
+<script src='https://api.mapbox.com/mapbox.js/v2.2.1/mapbox.js'></script>
+<script src='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-hash/v0.2.1/leaflet-hash.js'></script>
+<script src="http://maps.google.com/maps/api/js?v=3&sensor=false"></script>
+<script src="http://api-maps.yandex.ru/2.0/?load=package.map&lang=ru-RU" type="text/javascript"></script>
+<script src='../lib/Bing.js'></script>
+<script src='../lib/Google.js'></script>
+<script src='../lib/Yandex.js'></script>
+<link href='https://api.mapbox.com/mapbox.js/v2.2.1/mapbox.css' rel='stylesheet' />
+<link href='style.css' rel='stylesheet' />
+</head>
+<body>
+<div id='map'></div>
+<input id="range" type="range" min="0" max="1.0" step="any" style="width: 100%; position: absolute" />
+<div id='help'>
+  <a href="https://github.com/lxbarth/compare" class='button' id='forkme'>Fork me on Github</a>
+  <h2>Compare maps</h2>
+  <h3>Examples:</h3>
+  <dl>
+    <dt>
+      Compare two Mapbox maps by <a href="https://www.mapbox.com/developers/api/maps/#mapids">map id</a>
+    </dt>
+    <dd>
+      <a href="http://lxbarth.com/swipe/?lxbarth.mo5k9cn2&lxbarth.map-n8gsdqn4">http://lxbarth.com/swipe/?<strong>lxbarth.mo5k9cn2&amp;lxbarth.map-n8gsdqn4</strong></a>
+    </dd>
+    <dt>
+      Compare a Mapbox map to OpenStreetMap
+    </dt>
+    <dd>
+      <a href="http://lxbarth.com/swipe/?lxbarth.mo5k9cn2&osm">http://lxbarth.com/swipe/?<strong>lxbarth.mo5k9cn2&amp;osm</strong></a>
+    </dd>
+    <dt>
+      Compare a Mapbox map to Google Maps
+    </dt>
+    <dd>
+      <a href="http://lxbarth.com/swipe/?lxbarth.mo5k9cn2&google">http://lxbarth.com/swipe/?<strong>lxbarth.mo5k9cn2&amp;google</strong></a><br />
+      <a href="http://lxbarth.com/swipe/?lxbarth.mo5k9cn2&google.SATELLITE">http://lxbarth.com/swipe/?<strong>lxbarth.mo5k9cn2&amp;google.SATELLITE</strong></a><br />
+      <a href="http://lxbarth.com/swipe/?lxbarth.mo5k9cn2&google.HYBRID">http://lxbarth.com/swipe/?<strong>lxbarth.mo5k9cn2&amp;google.HYBRID</strong></a>
+    </dd>
+    <dt>
+       Compare a Mapbox map to Bing Satellite
+     </dt>
+     <dd>
+       <a href="http://lxbarth.com/swipe/?lxbarth.mo5k9cn2&bing">http://lxbarth.com/swipe/?<strong>lxbarth.mo5k9cn2&amp;bing</strong></a>
+     </dd>
+     <dt>
+       Compare a Mapbox map to Yandex
+     </dt>
+     <dd>
+       <a href="http://lxbarth.com/swipe/?lxbarth.mo5k9cn2&yandex">http://lxbarth.com/swipe/?<strong>lxbarth.mo5k9cn2&amp;yandex</strong></a>
+     </dd>
+     <dt>
+        Flip any comparison around
+      </dt>
+      <dd>
+        <a href="http://lxbarth.com/swipe/?yandex&lxbarth.mo5k9cn2">http://lxbarth.com/swipe/?<strong>yandex&amp;lxbarth.mo5k9cn2</strong></a>
+      </dd>
+   </dl>
+</div>
+<script src='site.js'></script>
+</body>
+</html>
