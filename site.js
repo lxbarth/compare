@@ -3,6 +3,28 @@
     if (!layerids) {
         document.getElementById('map1').style.display = 'none';
         document.getElementById('map2').style.display = 'none';
+        document.getElementById('compare').onclick = function(e) {
+            document.getElementById('compare').className = 'bold';
+            document.getElementById('swipe').className = '';
+            var elements = document.getElementsByTagName('dd');
+            for (var i = 0; i < elements.length; i++) {
+                elements[i].innerHTML = elements[i].innerHTML.replace(
+                    /http:\/\/lxbarth.com\/compare\/swipe\//g,
+                    'http:\/\/lxbarth.com\/compare\/');
+            }
+            return false;
+        };
+        document.getElementById('swipe').onclick = function() {
+            document.getElementById('swipe').className = 'bold';
+            document.getElementById('compare').className = '';
+            var elements = document.getElementsByTagName('dd');
+            for (var i = 0; i < elements.length; i++) {
+                elements[i].innerHTML = elements[i].innerHTML.replace(
+                    /http:\/\/lxbarth.com\/compare\//g,
+                    'http:\/\/lxbarth.com\/compare\/swipe\/');
+            }
+            return false;
+        };
         return;
     }
 
@@ -39,5 +61,4 @@
             reset: true
         });
     }
-
 })();
