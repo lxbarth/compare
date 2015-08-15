@@ -21,9 +21,9 @@ input[type=range]:focus {
 input[type=range]::-webkit-slider-thumb {
   -webkit-appearance: none;
   border: 1px solid rgba(255, 255, 255, 0.5);
-  height: 50px;
-  width: 30px;
-  border-radius: 5px;
+  height: 60px;
+  width: 60px;
+  border-radius: 30px;
   background: rgba(255, 255, 255, 0.5);
   cursor: pointer;
   margin-top: -14px;

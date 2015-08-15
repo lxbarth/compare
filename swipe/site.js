@@ -41,7 +41,7 @@
     document.getElementById('range').onmousemove = function(e) {
         if (down) {
             // console.log(document.getElementById('range').style.top = "10px");
-            document.getElementById('range').style.top = (e.screenY - 100) + "px";
+            document.getElementById('range').style.top = (e.screenY - 120) + "px";
         };
     };
 })();
