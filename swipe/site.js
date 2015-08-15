@@ -12,8 +12,7 @@ L.mapbox.accessToken = 'pk.eyJ1IjoibHhiYXJ0aCIsImEiOiJFVXdYcUlvIn0.bbaHTEWlnAwGg
 
 (function() {
     if (!location.search) {
-        document.getElementById('map').style.display = 'none';
-        document.getElementById('range').style.display = 'none';
+        location.replace('..');
         return;
     }
     var layerids = (location.search.split('?')[1] || '')

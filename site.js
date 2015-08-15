@@ -1,4 +1,9 @@
 (function() {
+    if (!location.search) {
+        document.getElementById('map1').style.display = 'none';
+        document.getElementById('map2').style.display = 'none';
+        return;
+    }
 
     var mapids = (location.search.split('?')[1] || '')
         .split('/')[0]

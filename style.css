@@ -5,6 +5,9 @@ body {
   line-height: 25px;
   }
 #map { position:absolute; top:0; bottom:0; width:100%; background-color: #202222; }
+#map1 { position:absolute; top:0; bottom:0; left:0; right:50%; }
+#map2 { position:absolute; top:0; bottom:0; left:50%; right:0; }
+
 #range {
   bottom: 35px;
   width: 100%;
