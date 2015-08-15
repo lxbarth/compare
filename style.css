@@ -41,6 +41,7 @@ h2 {
   padding-left: 100px;
   margin-right: -100px;
   padding-right: 100px;
+  box-shadow: 0px 3px 3px #f5f5f5;
 }
 h3 {
   font-size: 25px;
@@ -67,7 +68,7 @@ dd {
   padding: 5px 15px;
 }
 a.button {
-  color: #fff;
+  color: #ddd;
 }
 
 #forkme {
