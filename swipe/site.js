@@ -34,4 +34,14 @@
     clip();
     range['oninput' in range ? 'oninput' : 'onchange'] = clip;
     map.on('move', clip);
+
+    var down = false;
+    document.getElementById('range').onmousedown = function() { down = true; };
+    document.getElementById('range').onmouseup = function() { down = false; };
+    document.getElementById('range').onmousemove = function(e) {
+        if (down) {
+            // console.log(document.getElementById('range').style.top = "10px");
+            document.getElementById('range').style.top = (e.screenY - 100) + "px";
+        };
+    };
 })();
