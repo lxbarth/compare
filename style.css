@@ -34,6 +34,7 @@ input[type=range]::-webkit-slider-runnable-track {
   height: 0;
 }
 h2 {
+  font-size: 35px;
   padding: 0 0 20px 0;
   border-bottom: 1px solid #999;
   margin-left: -100px;
@@ -41,8 +42,12 @@ h2 {
   margin-right: -100px;
   padding-right: 100px;
 }
+h3 {
+  font-size: 25px;
+}
 a {
   text-decoration: none;
+  color: #084e9d;
 }
 .bold {
   font-weight: bold;
@@ -53,7 +58,7 @@ a {
 }
 dd {
   margin: 0;
-  padding: 0 0 10px 0;
+  padding: 0 0 20px 0;
 }
 
 .button {
@@ -67,4 +72,13 @@ a.button {
 
 #forkme {
   float: right;
+}
+
+@media (max-width: 700px) {
+  #help {
+    margin: 100px 20px;
+  }
+  #forkme {
+    display: none;
+  }
 }
