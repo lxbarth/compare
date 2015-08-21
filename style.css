@@ -64,11 +64,14 @@ dd {
 
 .button {
   border-radius: 5px;
-  background: #000;
+  background: #084e9d;
   padding: 5px 15px;
 }
+  .button:hover {
+    background: #0a66ce;
+  }
 a.button {
-  color: #ddd;
+  color: #fff;
 }
 
 #forkme {
