@@ -17,6 +17,7 @@ body {
   width: 52px;
   height: 26px;
   cursor: pointer;
+  border-radius: 3px;
 }
 #range {
   top: 50%;
