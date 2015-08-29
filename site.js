@@ -3,6 +3,8 @@
     if (!layerids) {
         document.getElementById('map1').style.display = 'none';
         document.getElementById('map2').style.display = 'none';
+        document.getElementById('help').style.display = 'block';
+
         document.getElementById('compare').onclick = function(e) {
             document.getElementById('compare').className = 'bold';
             document.getElementById('swipe').className = '';
