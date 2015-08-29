@@ -53,6 +53,9 @@ a {
 .bold {
   font-weight: bold;
 }
+.leaflet-bar, .leaflet-control-layers {
+  background-color: rgba(255, 255, 255, 0.5);
+}
 
 #help {
   margin: 100px;
