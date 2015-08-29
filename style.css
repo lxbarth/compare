@@ -7,6 +7,17 @@ body {
 #map { position:absolute; top:0; bottom:0; width:100%; background-color: #202222; }
 #map1 { position:absolute; top:0; bottom:0; left:0; right:50%; background-color: #202222; }
 #map2 { position:absolute; top:0; bottom:0; left:50%; right:0; background-color: #202222; }
+#toggle {
+  position: absolute;
+  background-image: url('swipe.png');
+  background-color: rgba(255, 255, 255, 0.5);
+  z-index: 20000;
+  top: 10px;
+  right: 10px;
+  width: 52px;
+  height: 26px;
+  cursor: pointer;
+}
 #range {
   top: 50%;
   width: 100%;

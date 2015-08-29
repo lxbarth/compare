@@ -49,4 +49,10 @@
             document.getElementById('range').style.top = (e.screenY - 120) + "px";
         };
     };
+
+    // Toggle to compare.
+    document.getElementById('toggle').onclick = function() {
+        var path = location.pathname.replace('swipe/', '');
+        location.href = location.origin + path + location.search + location.hash;
+    };
 })();

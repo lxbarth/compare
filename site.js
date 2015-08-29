@@ -3,6 +3,7 @@
     if (!layerids) {
         document.getElementById('map1').style.display = 'none';
         document.getElementById('map2').style.display = 'none';
+        document.getElementById('toggle').style.display = 'none';
         document.getElementById('help').style.display = 'block';
 
         document.getElementById('compare').onclick = function(e) {
@@ -63,4 +64,9 @@
             reset: true
         });
     }
+
+    // Toggle to swipe.
+    document.getElementById('toggle').onclick = function() {
+        location.href = location.origin + location.pathname + "swipe/" + location.search + location.hash;
+    };
 })();
