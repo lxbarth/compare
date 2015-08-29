@@ -53,7 +53,7 @@ a {
 .bold {
   font-weight: bold;
 }
-.leaflet-bar, .leaflet-control-layers {
+.leaflet-bar, .leaflet-control-layers, .leaflet-bar a:hover {
   background-color: rgba(255, 255, 255, 0.5);
 }
 
