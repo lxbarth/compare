@@ -34,7 +34,11 @@ var addLayer = function(layerid, map) {
             layer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
             break;
         default:
-            layer = L.mapbox.tileLayer(layerid);
+            if (layerid.indexOf('http') === 0) {
+                layer = new L.TileLayer(decodeURIComponent(layerid));
+            } else {
+                layer = L.mapbox.tileLayer(layerid);
+            }
             break;
     }
     return layer.addTo(map);
