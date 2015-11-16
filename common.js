@@ -29,6 +29,13 @@ var addLayer = function(layerid, map) {
         case 'yandex':
             layer = new L.Yandex();
             break;
+        case 'baidu':
+            L.setOptions(map, {
+                'crs': L.CRS.BEPSG3857,
+                'baidu': true
+            });
+            layer = new L.Baidu('wEdGBRYrr5t1tF9X9cGbSmkB');
+            break;
         case 'osm':
             map.attributionControl.addAttribution('<a href="http://openstreetmap.org/copyright">&copy; OpenStreetMap contributors</a>');
             layer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');

@@ -25,11 +25,11 @@
         var nw = map.containerPointToLayerPoint([0, 0]),
             se = map.containerPointToLayerPoint(map.getSize()),
             clipX = nw.x + (se.x - nw.x) * range.value;
-        var elem = left.getContainer()
-        elem.style.clip = 'rect(' + [nw.y, clipX, se.y, nw.x].join('px,') + 'px)';
-        elem.style.display='none';
-        elem.offsetHeight;
-        elem.style.display='';
+        // var elem = left.getContainer()
+        // elem.style.clip = 'rect(' + [nw.y, clipX, se.y, nw.x].join('px,') + 'px)';
+        // elem.style.display='none';
+        // elem.offsetHeight;
+        // elem.style.display='';
         var elem = right.getContainer()
         elem.style.clip = 'rect(' + [nw.y, se.x, se.y, clipX].join('px,') + 'px)';
         elem.style.display='none';
